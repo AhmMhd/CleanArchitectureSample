@@ -9,14 +9,13 @@ import com.domain.common.Result
 import javax.inject.Inject
 
 /**
- * Created by Dell 5521 on 9/28/2017.
+ * Created by Dell 5521 on 9/28/2019.
  */
 
 class NetworkCall @Inject constructor(
     protected var apiInterface: ApiInterface
 ) {
     //creating general methods for calling GET/POST request
-
     inline suspend fun generalRequest(request: () -> Deferred<Response<ResponseBody>>) =
         try {
 
@@ -34,7 +33,7 @@ class NetworkCall @Inject constructor(
 
 //            to handle response codes other than 200
                 var errorJson = response.errorBody()?.string()
-                Result.Error(response .message())
+                Result.Error(response.message())
             }
 
         } catch (exception: Exception) {
@@ -42,12 +41,10 @@ class NetworkCall @Inject constructor(
         }
 
 
-    //simple POST with data map
+    //simple GET
     inline suspend fun get(
         endpoint: String
     ): Result<out Any> {
-
-
         return generalRequest { apiInterface.get(endpoint) }
     }
 

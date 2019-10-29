@@ -7,9 +7,12 @@ import dagger.Component
 
 @Component(
     modules = [
+        AppModule::class,
+        RoomModule::class,
         RetrofitModule::class,
         NetworkModule::class,
-        UserCaseModule::class]
+        UserCaseModule::class,
+        UtilModule::class]
 )
 interface AppComponent {
     fun inject(mainActivity: MainActivity)
